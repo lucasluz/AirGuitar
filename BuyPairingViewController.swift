@@ -37,32 +37,43 @@ class BuyPairingViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(BuyPairingViewController.btNotNow(_:)), name: NSNotification.Name(rawValue: "dismissView"), object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(BuyPairingViewController.cancelPurchase(_:)), name: NSNotification.Name(rawValue: "cancelPurchase"), object: nil)
-        
-        products = []
-        Products.store.requestProductsWithCompletionHandler { success, products in
-            if success {
-                self.products = products
-                self.iapTitle.text = products.first?.localizedTitle
-                self.iapDescription.text = products.first?.localizedDescription
-                self.iapBuyPrice.setTitle("Buy it for $\(products.first!.price.floatValue)", for: UIControlState())
-                self.enableDisableButtons(true)
-                
-            } else {
-                let alert = UIAlertController(title: "Alert", message: "Request failed. Try again later.", preferredStyle: UIAlertControllerStyle.alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
-                self.present(alert, animated: true, completion: nil)
-            }
-            
-            self.activityIndicator.stopAnimating()
-        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        if(products.count == 0) {
-            activityIndicator.startAnimating()
+        activityIndicator.startAnimating()
+        self.iapBuyPrice.isHidden = true
+        self.iapRestore.isHidden = true
+        self.watchVideo.isHidden = true
+        
+        if(IAPHelper.canMakePayments()) {
+            products = []
+            Products.store.requestProductsWithCompletionHandler { success, products in
+                if success {
+                    self.products = products
+                    self.iapTitle.text = products.first?.localizedTitle
+                    self.iapDescription.text = products.first?.localizedDescription
+                    self.iapBuyPrice.setTitle("Buy it for $\(products.first!.price.floatValue)", for: UIControlState())
+                    
+                    self.iapBuyPrice.isHidden = false
+                    self.iapRestore.isHidden = false
+                    self.watchVideo.isHidden = false
+                    self.enableDisableButtons(true)
+
+                } else {
+                    let alert = UIAlertController(title: "Alert", message: "Request failed. Try again later.", preferredStyle: UIAlertControllerStyle.alert)
+                    alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: {(alert: UIAlertAction!) in self.dismiss(animated: true, completion: nil)}))
+                    self.present(alert, animated: true, completion: nil)
+                }
+            }
+        } else {
+            let alert = UIAlertController(title: "Alert", message: "Not available.", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: {(alert: UIAlertAction!) in self.dismiss(animated: true, completion: nil)}))
+            self.present(alert, animated: true, completion: nil)
         }
+        self.activityIndicator.stopAnimating()
+        
     }
     
     @IBAction func btnBuyProduct(_ sender: UIButton) {
@@ -121,7 +132,7 @@ class BuyPairingViewController: UIViewController {
         self.iapBuyPrice.isEnabled = enable
         self.iapRestore.isEnabled = enable
         self.watchVideo.isEnabled = enable
-        //self.iapNotNow.isEnabled = enable
+        self.iapNotNow.isEnabled = enable
         
         if(enable) {
             activityIndicator.stopAnimating()

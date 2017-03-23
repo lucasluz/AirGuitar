@@ -89,7 +89,9 @@ extension IAPHelper: SKProductsRequestDelegate {
     public func request(_ request: SKRequest, didFailWithError error: Error) {
         print("Failed to load list of products.")
         print("Error: \(error)")
+        completionHandler?(false, [])
         clearRequest()
+        
     }
     
     fileprivate func clearRequest() {

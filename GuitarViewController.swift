@@ -56,7 +56,7 @@ class GuitarViewController: UIViewController, WCSessionDelegate {
             
             if(UserDefaults.standard.bool(forKey: Products.AppleWatchConnectivity)) {
                 // connected
-                let image = UIImage(named: "apple-watch-logoON")
+                let image = UIImage(named: "new-apple-watch-logoON")
                 btnPairWatch.setImage(image, for: UIControlState())
                 
                 isConnectedToWatch =  true
@@ -117,7 +117,7 @@ class GuitarViewController: UIViewController, WCSessionDelegate {
         // if it's paired, disconnect
         if(isConnectedToWatch) {
             isConnectedToWatch = false
-            let image = UIImage(named: "apple-watch-logoOFF")
+            let image = UIImage(named: "new-apple-watch-logoOFF")
             sender.setImage(image, for: UIControlState())
             
             return
@@ -182,14 +182,14 @@ class GuitarViewController: UIViewController, WCSessionDelegate {
         
         if(value == Products.AppleWatchConnectivity) {
             // connected
-            let image = UIImage(named: "apple-watch-logoON")
+            let image = UIImage(named: "new-apple-watch-logoON")
             btnPairWatch.setImage(image, for: UIControlState())
             
             isConnectedToWatch =  true
             stwGuitarMode.isHidden = false
         } else {
             // not connected
-            let image = UIImage(named: "apple-watch-logoOFF")
+            let image = UIImage(named: "new-apple-watch-logoOFF")
             btnPairWatch.setImage(image, for: UIControlState())
             
             isConnectedToWatch =  false
