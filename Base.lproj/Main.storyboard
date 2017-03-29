@@ -237,7 +237,7 @@
                                     <action selector="btnPairWatch:" destination="n9G-u7-d0W" eventType="touchUpInside" id="E7m-76-KmA"/>
                                 </connections>
                             </button>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qdX-y2-qyh">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qdX-y2-qyh">
                                 <rect key="frame" x="589" y="546" width="55" height="77"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="77" id="N8q-0P-jeR"/>
@@ -247,8 +247,9 @@
                                     <action selector="btnSwitchGuitarMode:" destination="n9G-u7-d0W" eventType="touchUpInside" id="2hf-Xi-ECB"/>
                                 </connections>
                             </button>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="WlN-ri-Dhn">
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="WlN-ri-Dhn">
                                 <rect key="frame" x="307" y="307" width="37" height="37"/>
+                                <color key="color" red="0.129238152" green="1" blue="0.39875828530000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -256,20 +257,20 @@
                             <constraint firstItem="5at-wQ-2cP" firstAttribute="leading" secondItem="xwG-2o-5RW" secondAttribute="trailing" constant="8" symbolic="YES" id="17P-1b-gC2"/>
                             <constraint firstAttribute="trailing" secondItem="oZb-N4-owz" secondAttribute="trailing" id="1gy-jq-uje"/>
                             <constraint firstAttribute="trailingMargin" secondItem="5at-wQ-2cP" secondAttribute="trailing" constant="-14" id="3cQ-wx-hkf"/>
+                            <constraint firstItem="WlN-ri-Dhn" firstAttribute="centerX" secondItem="oZb-N4-owz" secondAttribute="centerX" id="4qE-0n-VcE"/>
                             <constraint firstItem="oZb-N4-owz" firstAttribute="top" secondItem="t8g-xC-PYN" secondAttribute="top" id="CSd-E5-c4m"/>
                             <constraint firstItem="b9U-np-efM" firstAttribute="trailing" secondItem="t8g-xC-PYN" secondAttribute="trailingMargin" id="EcT-EA-zlt"/>
                             <constraint firstItem="qdX-y2-qyh" firstAttribute="trailing" secondItem="5at-wQ-2cP" secondAttribute="trailing" id="INk-aM-MDf"/>
                             <constraint firstItem="xwG-2o-5RW" firstAttribute="centerY" secondItem="b9U-np-efM" secondAttribute="centerY" id="JPL-E1-YSd"/>
                             <constraint firstItem="5at-wQ-2cP" firstAttribute="leading" secondItem="b9U-np-efM" secondAttribute="leading" id="Kqj-V0-701"/>
                             <constraint firstItem="qdX-y2-qyh" firstAttribute="bottom" secondItem="xwG-2o-5RW" secondAttribute="bottom" id="L3r-cQ-Ndy"/>
+                            <constraint firstItem="WlN-ri-Dhn" firstAttribute="centerY" secondItem="b9U-np-efM" secondAttribute="centerY" id="PLl-xl-gwJ"/>
                             <constraint firstItem="xwG-2o-5RW" firstAttribute="leading" secondItem="t8g-xC-PYN" secondAttribute="leadingMargin" id="QKq-yu-Z6u"/>
                             <constraint firstItem="5at-wQ-2cP" firstAttribute="top" secondItem="dI2-j9-ClD" secondAttribute="bottom" constant="8" symbolic="YES" id="SON-L0-BAG"/>
                             <constraint firstItem="b9U-np-efM" firstAttribute="centerY" secondItem="oZb-N4-owz" secondAttribute="centerY" id="XKi-Xp-J8M"/>
                             <constraint firstItem="qdX-y2-qyh" firstAttribute="leading" secondItem="b9U-np-efM" secondAttribute="leading" id="cdF-oG-T5z"/>
                             <constraint firstItem="oZb-N4-owz" firstAttribute="leading" secondItem="t8g-xC-PYN" secondAttribute="leading" id="ecx-4u-hJI"/>
                             <constraint firstItem="5at-wQ-2cP" firstAttribute="top" secondItem="xwG-2o-5RW" secondAttribute="top" id="fVR-UZ-XNq"/>
-                            <constraint firstItem="WlN-ri-Dhn" firstAttribute="centerX" secondItem="oZb-N4-owz" secondAttribute="centerX" id="iQI-g1-yWN"/>
-                            <constraint firstItem="WlN-ri-Dhn" firstAttribute="centerY" secondItem="b9U-np-efM" secondAttribute="centerY" id="uhR-8a-AyH"/>
                             <constraint firstItem="oZb-N4-owz" firstAttribute="bottom" secondItem="F9j-TK-Efg" secondAttribute="top" id="xJ5-Dp-RI4"/>
                         </constraints>
                     </view>
@@ -288,11 +289,12 @@
                         <outlet property="pairingSpin" destination="WlN-ri-Dhn" id="1Jf-5Q-dNX"/>
                         <outlet property="stwGuitarMode" destination="qdX-y2-qyh" id="eAN-RK-9VE"/>
                         <segue destination="c8j-LU-nC5" kind="show" identifier="GuitarToBuySegue" id="0fv-Bt-XkE"/>
+                        <segue destination="RiG-5e-7f5" kind="show" identifier="GuitarToInfoSegue" id="eh2-V5-pPG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GKZ-sx-JeW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2041.5999999999999" y="-972.41379310344837"/>
+            <point key="canvasLocation" x="1626" y="-501"/>
         </scene>
         <!--Instructions View Controller-->
         <scene sceneID="D2P-HJ-hWO">
@@ -380,7 +382,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W7i-Uh-4cD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="192" y="874.36281859070471"/>
+            <point key="canvasLocation" x="1504" y="622"/>
         </scene>
         <!--Buy Pairing View Controller-->
         <scene sceneID="Eah-IT-TB0">
@@ -575,6 +577,7 @@
         <image name="tips" width="307" height="118"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="jUv-64-GSa"/>
+        <segue reference="eh2-V5-pPG"/>
+        <segue reference="xCO-cF-Jze"/>
     </inferredMetricsTieBreakers>
 </document>
