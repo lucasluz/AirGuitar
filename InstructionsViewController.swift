@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import AVKit
+import AVFoundation
 
 class InstructionsViewController: UIViewController {
 
@@ -15,9 +17,9 @@ class InstructionsViewController: UIViewController {
     }
     
     @IBAction func btnOk(_ sender: UIButton) {
-        performSegue(withIdentifier: "InfoToGuitarSegue", sender: self)
+        self.dismiss(animated: true, completion: nil)
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
