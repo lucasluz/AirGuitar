@@ -67,6 +67,7 @@ class GuitarViewController: UIViewController, WCSessionDelegate {
                 // connected
                 self.btnPairWatch.setImage(self.imgPaired, for: UIControlState())
                 self.isConnectedToWatch =  true
+                self.sendMessageToWatch()
                 
                 if(self.firstPairing) {
                     self.firstPairing = false;
@@ -122,6 +123,8 @@ class GuitarViewController: UIViewController, WCSessionDelegate {
             isConnectedToWatch = false
             sender.setImage(imgNotPaired, for: UIControlState())
             
+            sendMessageToWatch()
+            
             return
         }
         
@@ -135,8 +138,15 @@ class GuitarViewController: UIViewController, WCSessionDelegate {
                 initSessionProcedure(session)
             }
             
+            
+            
             // wait for asynchronous pair
         }
+    }
+    
+    func sendMessageToWatch() {
+        let message = ["sendMsg":isConnectedToWatch as Bool]
+        WCSession.default().sendMessage(message, replyHandler: nil, errorHandler: nil)
     }
     
     func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
@@ -164,35 +174,8 @@ class GuitarViewController: UIViewController, WCSessionDelegate {
         }
     }
 
-
-//    func purchasedNotification(_ notification: Notification) {
-//        pairingSpin.isHidden = false
-//        pairingSpin.startAnimating()
-//        
-//        let value = notification.userInfo!["product"] as! String
-//        
-//        if(value == Products.AppleWatchConnectivity) {
-//            // connected
-//            let image = UIImage(named: "new-apple-watch-logoON")
-//            btnPairWatch.setImage(image, for: UIControlState())
-//            
-//            isConnectedToWatch =  true
-//            stwGuitarMode.isHidden = false
-//        } else {
-//            // not connected
-//            let image = UIImage(named: "new-apple-watch-logoOFF")
-//            btnPairWatch.setImage(image, for: UIControlState())
-//            
-//            isConnectedToWatch =  false
-//        }
-//        
-//        pairingSpin.isHidden = true
-//        pairingSpin.stopAnimating()
-//    }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
 }
