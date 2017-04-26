@@ -80,19 +80,19 @@ class ChordPlayer : NSObject {
             if(audioPlayer == nil || !audioPlayer.isPlaying) {
                 try audioPlayer = AVAudioPlayer(contentsOf: tmpChord!)
                 audioPlayer.play()
-//                print("play 1")
+                
             } else if(audioPlayer2 == nil || !audioPlayer2.isPlaying){
                 try audioPlayer2 = AVAudioPlayer(contentsOf: tmpChord!)
                 audioPlayer2.play()
-//                print("play 2")
+
             } else if(audioPlayer3 == nil || !audioPlayer3.isPlaying){
                 try audioPlayer3 = AVAudioPlayer(contentsOf: tmpChord!)
                 audioPlayer3.play()
-//                print("play 3")
+
             } else {
                 try audioPlayer4 = AVAudioPlayer(contentsOf: tmpChord!)
                 audioPlayer4.play()
-//                print("play 4")
+
             }
             
         } catch {
